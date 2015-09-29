@@ -35,7 +35,7 @@
 				入力欄を入力したら、ICカードをカードリーダに置き、ボタンをクリックしてください。
 			</p>
 			
-			<form id="form" action="show.html" method="post" class="form-horizontal">
+			<form id="form" action="show.php" method="post" class="form-horizontal">
 				<div class="form-group">
 					<label class="control-label col-xs-2 col-md-2">ニックネーム</label>
 					<div class="col-xs-5 col-md-5">
@@ -70,12 +70,6 @@
 				</div>
 			</form>
 		</div>
-		
-		<div class="contents-footer">
-			<div class="progress">
-				<div class="progress-bar" style="width:60%;" role="progressbar">6/10</div>
-			</div>
-		</div>
 	</div>
 	
 	<footer>
@@ -87,7 +81,8 @@
 		function Init(){
 			pasori.Init();
 			document.getElementById("register").disabled = true;
-		} 
+		}
+	</script>
 	<!-- pasori event  -->
 	<script type="text/javascript" for="pasori" event="NotifyIDm(idm)">
 		var form = document.getElementById("form");
