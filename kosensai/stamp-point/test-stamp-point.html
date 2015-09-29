@@ -49,10 +49,10 @@
 	</script>
 	<!-- pasori event  -->
 	<script type="text/javascript" for="pasori" event="NotifyIDm(idm)">
-		var form = document.getCreatElement("form");
-		form.setAttribute("action", "passage.php");
+		var form = document.createElement("form");
+		form.setAttribute("action", "passage-time.php");
 		form.setAttribute("method", "POST");
-		
+		document.body.appendChild(form);
 		var input = document.createElement("input");
 		input.setAttribute("type", "hidden");
 		input.setAttribute("name", "idm");
