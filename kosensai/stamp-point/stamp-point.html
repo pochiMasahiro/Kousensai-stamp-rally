@@ -10,6 +10,10 @@
 		<p>ICカードをカードリーダーにタッチしてください。</p>
 		<object id="pasori" classid="CLSID:7d972707-49c9-4813-8361-ebed3f7d0d88"></object>
 		
+		<form id="form" action="passage-time.php" method="POST">
+			<input type="hidden" name="point" value="1">
+			<input type="hidden" name="link" value="test2-stamp-point.html">
+		</form>
 		<!-- pasori initialize -->
 		<script type="text/javascript">
 			window.onload = function (){
@@ -18,10 +22,7 @@
 		</script>
 		<!-- pasori event  -->
 		<script type="text/javascript" for="pasori" event="NotifyIDm(idm)">
-			var form = document.createElement("form");
-			form.setAttribute("action", "passage-time.php");
-			form.setAttribute("method", "POST");
-			document.body.appendChild(form);
+			var form = document.getElementById("form");
 			var input = document.createElement("input");
 			input.setAttribute("type", "hidden");
 			input.setAttribute("name", "idm");
