@@ -22,13 +22,6 @@
 	</head>
 	<body>
 		<div class="container">
-		<table class="table">
-			<tr>
-				<th>ナンバー</th>
-				<th>場所</th>
-				<th>時間</th>
-				<th>チェック</th>
-			</tr>
 		<?php
 			try{
 				$pdo = new PDO('mysql:host=localhost;dbname=stamprally;charset=utf8', 'piyo', 'piyopiyo', array(PDO::ATTR_EMULATE_PREPARES => false));
@@ -37,11 +30,30 @@
 			}
 			$idm = $_POST['idm'];
 			$point = $_POST['point'];
-			$chk = $pdo -> prepare('select count(*) from passage_time where idm = :idm and point = :point');
-			$chk -> bindValue(':idm', $idm);
-			$chk -> bindValue(':point', $point);
-			$chk -> execute();
-			if($chk -> fetchColumn() == 0){
+			
+			$chk_account = $pdo -> prepare('select name from account where idm = :idm ');
+			$chk_account -> bindValue(':idm', $idm);
+			$chk_account -> execute();
+		?>
+		<?php if(($row_name = $chk_account -> fetchColumn()) != null): ?>
+			<h1><?php echo $row_name; ?></h1>さん
+			<table class="table">
+			<tr>
+				<th>ナンバー</th>
+				<th>場所</th>
+				<th>時間</th>
+				<th>チェック</th>
+			</tr>
+		<?php else: ?>
+			<h1>アカウントが登録されていません</h1>
+			<?php exit(); ?>
+		<?php endif; ?>
+		<?php
+			$chk_point = $pdo -> prepare('select count(*) from passage_time where idm = :idm and point = :point');
+			$chk_point -> bindValue(':idm', $idm);
+			$chk_point -> bindValue(':point', $point);
+			$chk_point -> execute();
+			if($chk_point -> fetchColumn() == 0){
 				$smtp = $pdo -> prepare('INSERT INTO PASSAGE_TIME (IDM, POINT) VALUES(:IDM, :POINT)');
 				$smtp -> bindValue(':IDM', $idm);
 				$smtp -> bindValue(':POINT', $point);
@@ -53,23 +65,22 @@
 			$get_passage -> execute();
 			?>
 			<?php while($row = $get_passage -> fetch(PDO::FETCH_ASSOC)): ?>
-			<tr>
-				<td><?php echo $row["point"]; ?></td>
-				<td><?php echo $row["name"]; ?></td>
-				<td><?php
-					if($row["time"] != null){
-						echo $row["time"];
-					}
-					?>
-				</td>
-				<td><?php
-					if($row["time"] != null){
-						echo 'CHECK';
-					}?>
-				</td>
-			</tr>
-			<?php endwhile; ?>
-		</table>
+				<tr>
+					<td><?php echo $row["point"]; ?></td>
+					<td><?php echo $row["name"]; ?></td>
+					<td><?php
+						if($row["time"] != null){
+							echo $row["time"];
+						}
+						?>
+					</td>
+					<td><?php
+						if($row["time"] != null){
+							echo 'CHECK';
+						}?>
+					</td>
+				</tr>
+		<?php endwhile; echo '</table>'	?>
 		</div>
 	</body>
 </html>
