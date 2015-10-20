@@ -41,8 +41,8 @@
 		$stmt -> bindParam(':age', $age);
 		$stmt -> bindParam(':idm', $idm);
 		$idm = $_POST["idm"];
-		$name = $_POST["name"];
-		$age = $_POST["age"];
+		$name = htmlspecialchars($_POST["name"], ENT_QUOTES, 'UTF-8');
+		$age = htmlspecialchars($_POST["age"], ENT_QUOTES, 'UTF-8');
 		$gender_eng = $_POST["gender"];
 		$state = $stmt -> execute();
 		
