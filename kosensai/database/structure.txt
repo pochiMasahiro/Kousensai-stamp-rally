@@ -4,6 +4,7 @@ DATABASE[stamprally]
 		KEY[gender] varchar(6)
 		KEY[age] int
 		KEY[idm] char(16) primary key
+		KEY[student] int not null
 	
 	TABLE[passage_time]
 		KEY[idm] char(16)
@@ -13,3 +14,8 @@ DATABASE[stamprally]
 	TABLE[check_point]
 		KEY[point] SMALLINT PRIMARY KEY
 		KEY[NAME] TEXT NOT NULL
+		
+	TABLE[finish]
+		KEY[idm] char(16)
+		KEY[end] DATETIME DEFAULT CURRENT_TIMESTAMP
+		KEY[duration] DATETIME

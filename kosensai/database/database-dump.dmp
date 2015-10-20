@@ -27,6 +27,8 @@ CREATE TABLE `account` (
   `gender` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
   `age` smallint(6) DEFAULT NULL,
   `idm` char(16) COLLATE utf8_unicode_ci NOT NULL,
+  `student` int(11) NOT NULL,
+  `start` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idm`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -42,7 +44,22 @@ CREATE TABLE `check_point` (
   `point` int(11) NOT NULL AUTO_INCREMENT,
   `name` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`point`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `finish`
+--
+
+DROP TABLE IF EXISTS `finish`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `finish` (
+  `idm` char(16) COLLATE utf8_unicode_ci NOT NULL,
+  `end` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `duration` datetime NOT NULL,
+  PRIMARY KEY (`idm`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,4 +85,4 @@ CREATE TABLE `passage_time` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-04 15:56:18
+-- Dump completed on 2015-10-20 23:17:46
