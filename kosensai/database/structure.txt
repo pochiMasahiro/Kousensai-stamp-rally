@@ -1,0 +1,15 @@
+DATABASE[stamprally]
+	TABLE[account]
+		KEY[name] varchar(10) NOT NULL
+		KEY[gender] varchar(6)
+		KEY[age] int
+		KEY[idm] char(16) primary key
+	
+	TABLE[passage_time]
+		KEY[idm] char(16)
+		KEY[point] SMALLINT NOT NULL
+		KEY[time] DATETIME DEFAULT CURRENT_TIMESTAMP
+	
+	TABLE[check_point]
+		KEY[point] SMALLINT PRIMARY KEY
+		KEY[NAME] TEXT NOT NULL
