@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<title>@TITLE</title>
+	<title>高専祭スタンプラリー</title>
 
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
   </head>
   <body>
 	<header>
-		<h2>@NAME</h2>
+		<h2>高専祭スタンプラリー</h2>
 	</header>
 
 	<div class="container">
@@ -95,10 +95,6 @@
 		</div>
 	</div>
 	
-	<footer>
-		<h2>@copy right?</h2>
-	</footer>
-
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
