@@ -2,6 +2,9 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -12,7 +15,20 @@
 
 		<!-- My CSS -->
 		<link href="section.css" rel="stylesheet">
-	
+		
+		<!-- play audio and move previous page -->
+		<script type="text/javascript">
+			function move(){
+				var link = "<?php echo $_POST["link"];?>";
+				document.location.href = link;
+			}
+			
+			window.onload = (function(){
+				document.getElementById('sound-file').play();
+				setTimeout("move()", 20000);
+			});
+			
+		</script>
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -21,6 +37,9 @@
 		<![endif]-->
 	</head>
 	<body>
+		<audio id="sound-file" preload="auto">
+			<source src="decision4.mp3" type="audio/mp3">
+		</audio>
 		<div class="container">
 		<?php
 			try{
@@ -36,7 +55,7 @@
 			$chk_account -> execute();
 		?>
 		<?php if(($row_name = $chk_account -> fetchColumn()) != null): ?>
-			<h1><?php echo $row_name; ?></h1>さん
+			<span class="lead"><?php echo $row_name; ?></span>さん
 			<table class="table">
 			<tr>
 				<th>ナンバー</th>
@@ -44,11 +63,7 @@
 				<th>時間</th>
 				<th>チェック</th>
 			</tr>
-		<?php else: ?>
-			<h1>アカウントが登録されていません</h1>
-			<?php exit(); ?>
-		<?php endif; ?>
-		<?php
+			<?php
 			$chk_point = $pdo -> prepare('select count(*) from passage_time where idm = :idm and point = :point');
 			$chk_point -> bindValue(':idm', $idm);
 			$chk_point -> bindValue(':point', $point);
@@ -81,6 +96,9 @@
 					</td>
 				</tr>
 		<?php endwhile; echo '</table>'	?>
+		<?php else: ?>
+			<h1>アカウントが登録されていません</h1>
+		<?php endif; ?>
 		</div>
 	</body>
 </html>
