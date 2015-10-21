@@ -35,15 +35,17 @@
 			exit('データベース接続失敗。'.$e->getMessage());
 		}
 		
-		$stmt = $pdo->prepare('INSERT INTO ACCOUNT (name, gender, age, idm) VALUES(:name, :gender, :age, :idm)');
+		$stmt = $pdo->prepare('INSERT INTO ACCOUNT (name, gender, age, idm, affiliation) VALUES(:name, :gender, :age, :idm, :affiliation)');
 		$stmt -> bindParam(':name', $name);
 		$stmt -> bindParam(':gender', $gender_eng);
 		$stmt -> bindParam(':age', $age);
 		$stmt -> bindParam(':idm', $idm);
+		$stmt -> bindParam(':affiliation', $affiliation);
 		$idm = $_POST["idm"];
 		$name = htmlspecialchars($_POST["name"], ENT_QUOTES, 'UTF-8');
 		$age = htmlspecialchars($_POST["age"], ENT_QUOTES, 'UTF-8');
 		$gender_eng = $_POST["gender"];
+		$affiliation = $_POST["affiliation"];
 		$state = $stmt -> execute();
 		
 		$gender = null;
