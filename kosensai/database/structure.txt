@@ -5,6 +5,7 @@ DATABASE[stamprally]
 		KEY[age] int
 		KEY[idm] char(16) primary key
 		KEY[student] int not null
+		KEY[start] DATATIME NOT NULL CURRENT_TIMESTAMP ON UPDATE
 	
 	TABLE[passage_time]
 		KEY[idm] char(16)
@@ -15,7 +16,3 @@ DATABASE[stamprally]
 		KEY[point] SMALLINT PRIMARY KEY
 		KEY[NAME] TEXT NOT NULL
 		
-	TABLE[finish]
-		KEY[idm] char(16)
-		KEY[end] DATETIME DEFAULT CURRENT_TIMESTAMP
-		KEY[duration] DATETIME
