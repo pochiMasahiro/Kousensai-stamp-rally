@@ -20,9 +20,17 @@
 				document.location.href = link;
 			}
 			
+			var num = 0;
+			function time(){
+				var tag = document.getElementById("timer");
+				tag.textContent = 19 - num;
+				num++;
+			}
+			
 			window.onload = (function(){
 				document.getElementById('sound-file').play();
-				setTimeout("move()", 20000);
+				var interval = setInterval('time()', 1000);
+				setTimeout((function(){clearInterval(interval); move();}), 20000);
 			});
 			
 		</script>
@@ -81,6 +89,7 @@
 		<?php else: ?>
 			<h1>アカウントが登録されていません</h1>
 		<?php endif; ?>
+		あと<strong id="timer">20</strong>秒で前のページに戻ります。
 		</div>
 	</body>
 </html>
