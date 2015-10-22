@@ -58,7 +58,7 @@
 			<span class="lead"><?php echo $row_name; ?></span>さん
 			<table class="table">
 			<tr>
-				<th>ナンバー</th>
+				<th>記号</th>
 				<th>場所</th>
 				<th>時間</th>
 				<th>チェック</th>
@@ -75,13 +75,13 @@
 				$smtp -> execute();
 			}
 			
-			$get_passage = $pdo -> prepare('SELECT check_point.point, check_point.name, passage_time.time FROM check_point LEFT JOIN passage_time ON check_point.point = passage_time.point and passage_time.idm = :idm order by check_point.point asc');
+			$get_passage = $pdo -> prepare('SELECT check_point.sign, check_point.name, passage_time.time FROM check_point LEFT JOIN passage_time ON check_point.point = passage_time.point and passage_time.idm = :idm order by check_point.point asc');
 			$get_passage -> bindValue(':idm', $idm);
 			$get_passage -> execute();
 			?>
 			<?php while($row = $get_passage -> fetch(PDO::FETCH_ASSOC)): ?>
 				<tr>
-					<td><?php echo $row["point"]; ?></td>
+					<td><?php echo $row["sign"]; ?></td>
 					<td><?php echo $row["name"]; ?></td>
 					<td><?php
 						if($row["time"] != null){
@@ -91,7 +91,7 @@
 					</td>
 					<td><?php
 						if($row["time"] != null){
-							echo 'CHECK';
+							echo "<span class=\"glyphicon glyphicon-ok\"></span>";
 						}?>
 					</td>
 				</tr>
