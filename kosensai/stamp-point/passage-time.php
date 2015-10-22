@@ -13,9 +13,6 @@
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 
-		<!-- My CSS -->
-		<link href="section.css" rel="stylesheet">
-		
 		<!-- play audio and move previous page -->
 		<script type="text/javascript">
 			function move(){
@@ -29,12 +26,6 @@
 			});
 			
 		</script>
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
 	</head>
 	<body>
 		<audio id="sound-file" preload="auto">
@@ -83,19 +74,10 @@
 				<tr>
 					<td><?php echo $row["sign"]; ?></td>
 					<td><?php echo $row["name"]; ?></td>
-					<td><?php
-						if($row["time"] != null){
-							echo $row["time"];
-						}
-						?>
-					</td>
-					<td><?php
-						if($row["time"] != null){
-							echo "<span class=\"glyphicon glyphicon-ok\"></span>";
-						}?>
-					</td>
+					<td><?php if($row["time"] != null)echo $row["time"];?></td>
+					<td><?php if($row["time"] != null)echo "<span class=\"glyphicon glyphicon-ok\"></span>";?></td>
 				</tr>
-		<?php endwhile; echo '</table>'	?>
+			<?php endwhile; echo '</table>'	?>
 		<?php else: ?>
 			<h1>アカウントが登録されていません</h1>
 		<?php endif; ?>
