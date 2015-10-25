@@ -1,0 +1,105 @@
+-- MySQL dump 10.15  Distrib 10.0.20-MariaDB, for debian-linux-gnueabihf (armv7l)
+--
+-- Host: localhost    Database: stamprally
+-- ------------------------------------------------------
+-- Server version	10.0.20-MariaDB-0+deb8u1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `account`
+--
+
+DROP TABLE IF EXISTS `account`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `account` (
+  `name` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `gender` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `age` smallint(6) DEFAULT NULL,
+  `idm` char(16) COLLATE utf8_unicode_ci NOT NULL,
+  `affiliation` char(5) COLLATE utf8_unicode_ci NOT NULL,
+  `begin` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `finish` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idm`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `account`
+--
+
+LOCK TABLES `account` WRITE;
+/*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES ('ワタナベ','male',20,'01010112550BFC11','inner','2015-10-24 11:30:14','2015-10-24 11:30:14'),('フルガキ','female',59,'01010112CD0D7A09','outer','2015-10-24 12:16:21','2015-10-24 12:16:21'),('フルガギ','male',59,'0101021239105923','outer','2015-10-24 12:13:17','2015-10-24 12:13:17'),('ノムラ','male',18,'01010212830E2423','inner','2015-10-24 11:34:19','2015-10-24 11:34:19');
+/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `check_point`
+--
+
+DROP TABLE IF EXISTS `check_point`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `check_point` (
+  `point` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text COLLATE utf8_unicode_ci NOT NULL,
+  `sign` char(1) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`point`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `check_point`
+--
+
+LOCK TABLES `check_point` WRITE;
+/*!40000 ALTER TABLE `check_point` DISABLE KEYS */;
+INSERT INTO `check_point` VALUES (1,'受付','☆'),(2,'古本市　図書委員会','♧'),(4,'モデ研直売所　モデリング研究会','♢'),(5,'まんけん！　漫画イラスト研究同好会','♡'),(6,'電気通信部','❀');
+/*!40000 ALTER TABLE `check_point` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `passage_time`
+--
+
+DROP TABLE IF EXISTS `passage_time`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `passage_time` (
+  `idm` char(16) COLLATE utf8_unicode_ci NOT NULL,
+  `point` smallint(6) NOT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `passage_time`
+--
+
+LOCK TABLES `passage_time` WRITE;
+/*!40000 ALTER TABLE `passage_time` DISABLE KEYS */;
+INSERT INTO `passage_time` VALUES ('01010212830E2423',1,'2015-10-24 11:34:32'),('01010212830E2423',2,'2015-10-24 11:40:00'),('01010212830E2423',5,'2015-10-24 11:50:00'),('01010212830E2423',6,'2015-10-24 11:50:54'),('01010212830E2423',4,'2015-10-24 11:52:29'),('0101021239105923',1,'2015-10-24 12:13:37'),('01010112CD0D7A09',1,'2015-10-24 12:16:28');
+/*!40000 ALTER TABLE `passage_time` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-10-24 12:30:48
